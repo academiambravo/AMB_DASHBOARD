@@ -1,21 +1,19 @@
 package com.militar.rest.AMB_DASHBOARD.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@ToString
-@Data
+@ToString(exclude = "tokens")
 public class Usuario {
 
     @Id
@@ -43,4 +41,7 @@ public class Usuario {
     private String fecha_examen;
     private Integer aciertos_examen;
     private float nota_examen;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Token> tokens = new ArrayList<>();
 }

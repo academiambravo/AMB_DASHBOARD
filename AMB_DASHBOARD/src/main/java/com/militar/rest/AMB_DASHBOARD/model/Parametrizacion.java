@@ -16,7 +16,8 @@ public class Parametrizacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idparametrizacion;
+    private Integer idparametrizacion;
+
     private String clave;
-    private int valor;
+    private Integer valor;
 }

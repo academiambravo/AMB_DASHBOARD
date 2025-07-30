@@ -1,13 +1,10 @@
 package com.militar.rest.AMB_DASHBOARD.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 @Entity
 @Builder
@@ -20,12 +17,13 @@ public class Curso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int curso_id;
+    private Integer curso_id;
 
-    private String nombre_curso;
-    private float precio;
+    @Column(name = "nombre_curso")
+    private String nombreCurso;
+    private Double precio;
     private String descripcion;
-    private int dias;
+    private Integer dias;
     private String fecha_creacion;
     private String usuario_creacion;
     private Timestamp fecha_inicio;

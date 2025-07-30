@@ -1,11 +1,10 @@
 package com.militar.rest.AMB_DASHBOARD.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Builder
@@ -19,10 +18,13 @@ public class Compra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int compra_id;
 
-    /*
-    private int iduser;
-    private int idcurso;
-     */
+
+    @OneToMany( fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
+    private List<Curso> cursos;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
     private String precio_compra;
     private String fecha_compra;

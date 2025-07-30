@@ -22,12 +22,20 @@ public class PreguntaExamen {
     private boolean rfalsa3;
 
 
-    /*
-    private int idcategoria;
-    private int idsubcategoria;
-    @Column(name = "idexamen")
-    private int idexamen;
-    @Column(name = "idpregunta")
-    private int idpregunta;
-     */
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "idsubcategoria")
+    private Subcategoria subcategoria;
+
+    @ManyToOne
+    @JoinColumn(name = "idexamen")
+    private Examen examen;
+
+    @ManyToOne
+    @JoinColumn(name = "idpregunta")
+    private Pregunta pregunta;
 }

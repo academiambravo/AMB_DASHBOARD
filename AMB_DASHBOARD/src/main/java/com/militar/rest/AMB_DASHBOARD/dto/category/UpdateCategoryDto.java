@@ -1,4 +1,4 @@
-package com.militar.rest.AMB_DASHBOARD.dto.categoria;
+package com.militar.rest.AMB_DASHBOARD.dto.category;
 
 import com.militar.rest.AMB_DASHBOARD.model.Categoria;
 import lombok.Builder;

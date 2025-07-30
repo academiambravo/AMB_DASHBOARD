@@ -1,9 +1,6 @@
 package com.militar.rest.AMB_DASHBOARD.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 
@@ -19,10 +16,9 @@ public class UsuarioIP {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int usuario_ip_id;
 
-    /*
-    private int idusuario;
+    @ManyToOne
+    private Usuario usuario;
 
-     */
     private String ip;
 
 }

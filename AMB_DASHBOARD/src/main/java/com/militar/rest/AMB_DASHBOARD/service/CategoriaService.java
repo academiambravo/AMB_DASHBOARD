@@ -1,9 +1,9 @@
 package com.militar.rest.AMB_DASHBOARD.service;
 
-import com.militar.rest.AMB_DASHBOARD.dto.categoria.CreateCategoryDto;
-import com.militar.rest.AMB_DASHBOARD.dto.categoria.GetCategoriaDto;
-import com.militar.rest.AMB_DASHBOARD.dto.categoria.GetCategoryListDto;
-import com.militar.rest.AMB_DASHBOARD.dto.categoria.UpdateCategoryDto;
+import com.militar.rest.AMB_DASHBOARD.dto.category.CreateCategoryDto;
+import com.militar.rest.AMB_DASHBOARD.dto.category.GetCategoriaDto;
+import com.militar.rest.AMB_DASHBOARD.dto.category.GetCategoryListDto;
+import com.militar.rest.AMB_DASHBOARD.dto.category.UpdateCategoryDto;
 import com.militar.rest.AMB_DASHBOARD.model.Categoria;
 import com.militar.rest.AMB_DASHBOARD.repository.CategoriaRepository;
 import jakarta.persistence.EntityNotFoundException;

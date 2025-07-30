@@ -1,8 +1,8 @@
 package com.militar.rest.AMB_DASHBOARD.controller;
 
-import com.militar.rest.AMB_DASHBOARD.dto.categoria.CreateCategoryDto;
-import com.militar.rest.AMB_DASHBOARD.dto.categoria.GetCategoriaDto;
-import com.militar.rest.AMB_DASHBOARD.dto.categoria.UpdateCategoryDto;
+import com.militar.rest.AMB_DASHBOARD.dto.category.CreateCategoryDto;
+import com.militar.rest.AMB_DASHBOARD.dto.category.GetCategoriaDto;
+import com.militar.rest.AMB_DASHBOARD.dto.category.UpdateCategoryDto;
 import com.militar.rest.AMB_DASHBOARD.model.Categoria;
 import com.militar.rest.AMB_DASHBOARD.service.CategoriaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,6 +10,7 @@ import lombok.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/category")

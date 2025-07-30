@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 
 @Entity
 @Builder
@@ -17,11 +19,15 @@ public class Ranking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ranking_id;
 
-    /*
-        private Integer iduser;
-        private Integer idcategoria;
 
-     */
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
     @Enumerated(EnumType.STRING)
     private TipoExamen tipo_examen;

@@ -21,11 +21,14 @@ public class Examen {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int examen_id;
 
-    /*
-      private int iduser;
-    private int idcategoria;
 
-     */
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
     private int preguntas_total;
     private int preguntas_acertadas;

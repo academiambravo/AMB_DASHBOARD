@@ -14,10 +14,10 @@ public class Pregunta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int pregunta_id;
+    private Integer pregunta_id;
 
     private String identificador;
-    private int orden;
+    private Integer orden;
     private String enunciado;
     private String pregunta;
     private String rcorrecta;
@@ -33,7 +33,8 @@ public class Pregunta {
     private String usuario_modificacion;
     private String fecha_modificacion;
 
-    /*
-     private int idsubcategoria;
-     */
+
+    @ManyToOne
+    @JoinColumn(name = "id_subcategoria")
+    private Subcategoria subcategoria;
 }

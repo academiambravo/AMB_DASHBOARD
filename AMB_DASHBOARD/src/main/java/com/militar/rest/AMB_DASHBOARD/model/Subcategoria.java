@@ -1,11 +1,7 @@
 package com.militar.rest.AMB_DASHBOARD.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
-
 
 @Entity
 @Builder
@@ -19,11 +15,9 @@ public class Subcategoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_subcategoria;
 
-    /*
-    private int idcategoria;
-
-     */
-
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
     private String nombre;
     private String usuario_creacion;
