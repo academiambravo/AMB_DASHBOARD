@@ -58,8 +58,8 @@ public class CursoService {
         curso.setDias(Integer.parseInt(courseDto.course_days()));
         curso.setFecha_creacion(courseDto.created_at());
         curso.setUsuario_creacion(courseDto.created_by());
-        curso.setFecha_inicio(Timestamp.valueOf(courseDto.course_start()));
-        curso.setFecha_fin(Timestamp.valueOf(courseDto.course_end()));
+        curso.setFecha_inicio(LocalDateTime.parse(courseDto.course_start()));
+        curso.setFecha_fin(LocalDateTime.parse(courseDto.course_end()));
         curso.setHabilitado(courseDto.enabled());
         curso.setModo(courseDto.mode());
 
@@ -74,8 +74,8 @@ public class CursoService {
                 .dias(Integer.parseInt(courseDto.course_days()))
                 .fecha_creacion(LocalDateTime.now().toString())
                 .usuario_creacion(courseDto.created_by())
-                .fecha_inicio(Timestamp.valueOf(courseDto.course_start()))
-                .fecha_fin(Timestamp.valueOf(courseDto.course_end()))
+                .fecha_inicio(LocalDateTime.parse(courseDto.course_start()))
+                .fecha_fin(LocalDateTime.parse(courseDto.course_end()))
                 .habilitado(courseDto.enabled())
                 .modo(courseDto.mode())
                 .build();

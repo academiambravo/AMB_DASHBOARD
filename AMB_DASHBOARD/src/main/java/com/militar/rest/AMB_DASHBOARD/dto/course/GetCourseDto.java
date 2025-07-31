@@ -5,7 +5,6 @@ import lombok.Builder;
 
 @Builder
 public record GetCourseDto(
-
         String course_id,
         String course_name,
         String course_price,
@@ -19,17 +18,17 @@ public record GetCourseDto(
         String mode
 ) {
 
-    public static GetCourseDto from (Curso curso) {
+    public static GetCourseDto from(Curso curso) {
         return GetCourseDto.builder()
-                .course_id(curso.getCurso_id().toString())
+                .course_id(curso.getCurso_id() != null ? curso.getCurso_id().toString() : "null")
                 .course_name(curso.getNombreCurso())
-                .course_price(curso.getPrecio().toString())
+                .course_price(curso.getPrecio() != null ? curso.getPrecio().toString() : "null")
                 .course_description(curso.getDescripcion())
-                .course_days(curso.getDias().toString())
-                .created_at(curso.getFecha_creacion())
+                .course_days(curso.getDias() != null ? curso.getDias().toString() : "null")
+                .created_at(curso.getFecha_creacion() != null ? curso.getFecha_creacion() : "null")
                 .created_by(curso.getUsuario_creacion())
-                .course_start(curso.getFecha_inicio().toString())
-                .course_end(curso.getFecha_fin().toString())
+                .course_start(curso.getFecha_inicio() != null ? curso.getFecha_inicio().toString() : "null")
+                .course_end(curso.getFecha_fin() != null ? curso.getFecha_fin().toString() : "null")
                 .enabled(curso.isHabilitado())
                 .mode(curso.getModo())
                 .build();
