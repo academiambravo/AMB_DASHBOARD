@@ -18,8 +18,8 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('AMB_DASHBOARD') {
-                    sh "mvn sonar:sonar -Dsonar.login=$squ_3eb9cd856f53ccf2016ddb3553ad0527c6181752"
+                withSonarQubeEnv('SonarQube') {
+                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
                 }
             }
         }
@@ -30,7 +30,6 @@ pipeline {
                 }
             }
         }
-        // Aquí puedes añadir más stages, como deploy, solo en ramas específicas
     }
     post {
         always {
