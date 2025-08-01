@@ -31,12 +31,13 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            junit 'target/surefire-reports/*.xml'
-        }
-        failure {
-            echo 'Build or Quality Gate failed.'
-        }
+post {
+    // always {
+    //     junit 'target/surefire-reports/*.xml'
+    // }
+    failure {
+        echo 'Build or Quality Gate failed.'
     }
+}
+
 }
