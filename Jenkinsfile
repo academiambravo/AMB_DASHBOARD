@@ -18,7 +18,7 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SONARQUBE_SERVER_NAME') {
+                withSonarQubeEnv('AMB_DASHBOARD') {
                     sh "mvn sonar:sonar -Dsonar.login=$squ_3eb9cd856f53ccf2016ddb3553ad0527c6181752"
                 }
             }
