@@ -8,6 +8,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -39,10 +40,11 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-    public GetUserNameSo getUserByName() {
-
-        return GetUserNameSo.from(usuarioRepository.findAll());
-
+    public List<GetUserNameSo> getUserByName() {
+        return usuarioRepository.findAll()
+                .stream()
+                .map(GetUserNameSo::from)
+                .toList();
     }
 
 

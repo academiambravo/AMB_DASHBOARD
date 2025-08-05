@@ -8,17 +8,17 @@ import java.util.List;
 @Builder
 public record GetUserNameSo(
 
-       Integer iduser,
+       String iduser,
        String correo,
        String nombre_completo,
        String apodo
 ){
-    public static GetUserNameSo from (List<Usuario> user) {
+    public static GetUserNameSo from(Usuario user) {
         return GetUserNameSo.builder()
-                .iduser(user.get(0).getUsuario_id())
-                .correo(user.get(0).getCorreo())
-                .nombre_completo(user.get(0).getNombre_completo())
-                .apodo(user.get(0).getApodo())
+                .iduser(user.getUsuario_id().toString())
+                .correo(user.getCorreo())
+                .nombre_completo(user.getNombre_completo())
+                .apodo(user.getApodo())
                 .build();
     }
 }

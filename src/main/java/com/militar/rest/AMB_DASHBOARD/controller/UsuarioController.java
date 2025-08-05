@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequiredArgsConstructor
@@ -51,7 +53,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/so-user")
-    public ResponseEntity<GetUserNameSo> getUserByName() {
+    public ResponseEntity<List<GetUserNameSo>> getUserByName() {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.getUserByName());
     }
 }
