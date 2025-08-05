@@ -19,8 +19,6 @@ public class Ranking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ranking_id;
 
-
-
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;

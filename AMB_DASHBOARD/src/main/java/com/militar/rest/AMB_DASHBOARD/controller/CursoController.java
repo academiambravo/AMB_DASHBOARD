@@ -2,6 +2,7 @@ package com.militar.rest.AMB_DASHBOARD.controller;
 
 import com.militar.rest.AMB_DASHBOARD.dto.course.GetCourseDto;
 import com.militar.rest.AMB_DASHBOARD.dto.course.GetCourseListDto;
+import com.militar.rest.AMB_DASHBOARD.dto.course.GetCourseSo;
 import com.militar.rest.AMB_DASHBOARD.model.Curso;
 import com.militar.rest.AMB_DASHBOARD.service.CursoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -77,6 +78,11 @@ public class CursoController {
     @PostMapping()
     public ResponseEntity<Curso> createCourse(@RequestBody GetCourseDto courseDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(cursoService.createCourse(courseDto));
+    }
+
+    @GetMapping("/so-course")
+    public ResponseEntity<GetCourseSo> getCourseSo() {
+        return ResponseEntity.status(HttpStatus.OK).body(cursoService.getCourseSo());
     }
 
 

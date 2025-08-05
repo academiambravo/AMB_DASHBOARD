@@ -16,10 +16,14 @@ public class Compra {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int compra_id;
+    private Integer compra_id;
 
-
-    @OneToMany( fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "compra_curso",
+            joinColumns = @JoinColumn(name = "compra_id"),
+            inverseJoinColumns = @JoinColumn(name = "curso_id")
+    )
     private List<Curso> cursos;
 
     @ManyToOne

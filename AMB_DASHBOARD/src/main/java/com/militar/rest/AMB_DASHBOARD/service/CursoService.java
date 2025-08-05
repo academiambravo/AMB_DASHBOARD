@@ -3,6 +3,7 @@ package com.militar.rest.AMB_DASHBOARD.service;
 
 import com.militar.rest.AMB_DASHBOARD.dto.course.GetCourseDto;
 import com.militar.rest.AMB_DASHBOARD.dto.course.GetCourseListDto;
+import com.militar.rest.AMB_DASHBOARD.dto.course.GetCourseSo;
 import com.militar.rest.AMB_DASHBOARD.model.Curso;
 import com.militar.rest.AMB_DASHBOARD.repository.CursoRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -81,5 +82,9 @@ public class CursoService {
                 .build();
 
         return cursoRepository.save(curso);
+    }
+
+    public GetCourseSo getCourseSo () {
+        return  GetCourseSo.from(cursoRepository.findAll());
     }
 }
