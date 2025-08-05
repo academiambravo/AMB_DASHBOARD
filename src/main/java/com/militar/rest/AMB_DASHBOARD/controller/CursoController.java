@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequiredArgsConstructor
@@ -81,7 +83,7 @@ public class CursoController {
     }
 
     @GetMapping("/so-course")
-    public ResponseEntity<GetCourseSo> getCourseSo() {
+    public ResponseEntity<List<GetCourseSo>> getCourseSo() {
         return ResponseEntity.status(HttpStatus.OK).body(cursoService.getCourseSo());
     }
 

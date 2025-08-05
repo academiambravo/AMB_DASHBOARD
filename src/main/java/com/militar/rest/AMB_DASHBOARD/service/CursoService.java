@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -84,7 +85,11 @@ public class CursoService {
         return cursoRepository.save(curso);
     }
 
-    public GetCourseSo getCourseSo () {
-        return  GetCourseSo.from(cursoRepository.findAll());
+    public List<GetCourseSo> getCourseSo () {
+
+        return cursoRepository.findAll()
+                .stream()
+                .map(GetCourseSo::from)
+                .toList();
     }
 }

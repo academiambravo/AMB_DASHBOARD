@@ -8,15 +8,21 @@ import java.util.List;
 @Builder
 public record GetCourseSo(
 
-        List<String> course_name
+       String idcurso,
+         String nombre_curso,
+       String precio,
+       String dias
 
 ) {
 
-    public static GetCourseSo from (List<Curso> curso) {
+    public static GetCourseSo from (Curso curso) {
+
         return GetCourseSo.builder()
-                .course_name(curso.stream()
-                        .map(Curso::getNombreCurso)
-                        .toList())
+                .idcurso(curso.getCurso_id().toString())
+                .nombre_curso(curso.getNombreCurso())
+                .precio(curso.getPrecio().toString())
+                .dias(curso.getDias().toString())
                 .build();
+
     }
 }
