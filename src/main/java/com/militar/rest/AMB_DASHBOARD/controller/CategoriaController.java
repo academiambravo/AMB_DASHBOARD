@@ -18,6 +18,7 @@ public class CategoriaController {
 
     private final CategoriaService categoriaService;
 
+    //bien
     @Operation(
         summary = "Get all categories",
         description = "Returns a list of all categories in the system.",
@@ -28,6 +29,8 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.getCategoryList());
     }
 
+
+    //bien
     @Operation(
         summary = "Get category by ID",
         description = "Returns a specific category by its ID.",
@@ -38,6 +41,7 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.getCategoryById(id));
     }
 
+    //bien
     @Operation(
         summary = "Get category by name",
         description = "Returns a specific category by its name.",
@@ -48,6 +52,7 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.getCategoryByName(name));
     }
 
+    //bien
     @Operation(
         summary = "Create a new category",
         description = "Creates a new category with the provided details.",
@@ -58,6 +63,7 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.createNewCategory(category));
     }
 
+    //bien
     @PatchMapping("/{id}")
     @Operation(
         summary = "Update an existing category",
@@ -71,6 +77,7 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.updateCategory(id, category));
     }
 
+    //bien
     @Operation(
         summary = "Delete a category",
         description = "Deletes a specific category by its ID.",

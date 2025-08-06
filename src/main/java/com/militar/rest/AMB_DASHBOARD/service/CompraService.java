@@ -1,9 +1,7 @@
 package com.militar.rest.AMB_DASHBOARD.service;
 
-import com.militar.rest.AMB_DASHBOARD.dto.course.GetCourseDto;
 import com.militar.rest.AMB_DASHBOARD.dto.purchase.GetPurchaseDto;
 import com.militar.rest.AMB_DASHBOARD.dto.purchase.GetPurchaseList;
-import com.militar.rest.AMB_DASHBOARD.dto.user.GetUserDto;
 import com.militar.rest.AMB_DASHBOARD.model.Compra;
 import com.militar.rest.AMB_DASHBOARD.model.Curso;
 import com.militar.rest.AMB_DASHBOARD.model.Usuario;
@@ -25,10 +23,23 @@ public class CompraService {
     private final CursoRepository cursoRepository;
     private final UsuarioRepository usuarioRepository;
 
-    public GetPurchaseDto getUserById(Integer userId) {
+    public GetPurchaseDto getPurchaseById(Integer userId) {
         return compraRepository.findById(userId)
                 .map(GetPurchaseDto::from)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+    }
+
+    public GetPurchaseDto getPurchaseByUserId(Integer userId) {
+
+        Usuario usuario = usuarioRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado: " + userId));
+
+        List<Compra> compras = compraRepository.findAllByUsuario(usuario);
+
+        if (compras.isEmpty()) {
+            throw new EntityNotFoundException("No purchases found for user with id: " + userId);
+        }
+        return GetPurchaseDto.from(compras.get(0));
     }
 
     @Transactional
