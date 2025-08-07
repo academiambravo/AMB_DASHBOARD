@@ -92,4 +92,8 @@ public class CursoService {
                 .map(GetCourseSo::from)
                 .toList();
     }
+
+    public void deleteCourseById(Integer id) {
+        cursoRepository.deleteById(id);
+    }
 }

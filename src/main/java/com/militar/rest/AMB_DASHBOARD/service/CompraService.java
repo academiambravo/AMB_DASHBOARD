@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -71,18 +72,44 @@ public class CompraService {
         Compra existingCompra = compraRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Purchase not found with id: " + id));
 
-        existingCompra.setPrecio_compra(purchaseDto.purchase_price());
-        existingCompra.setFecha_compra(purchaseDto.purchase_date());
-
-        if (purchaseDto.user_id() == null || purchaseDto.user_id().isEmpty()) {
-            throw new IllegalArgumentException("El user_id no puede ser null o vacío");
+        // Actualizar precio compra
+        if (purchaseDto.purchase_price() != null && !purchaseDto.purchase_price().isEmpty()) {
+            existingCompra.setPrecio_compra(String.valueOf(Double.parseDouble(purchaseDto.purchase_price())));
         }
 
-        Integer userId = Integer.parseInt(purchaseDto.user_id());
-        Usuario usuario = usuarioRepository.findById(userId)
-                .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado: " + userId));
-        existingCompra.setUsuario(usuario);
+        // Actualizar fechas (parsear si no es null)
+        if (purchaseDto.purchase_date() != null && !purchaseDto.purchase_date().isEmpty()) {
+            existingCompra.setFecha_compra(String.valueOf(LocalDate.parse(purchaseDto.purchase_date())));
+        }
 
+
+        // Merchant order y código descuento
+        if (purchaseDto.merchant_order() != null) {
+            existingCompra.setMerchant_order(purchaseDto.merchant_order());
+        }
+        if (purchaseDto.discount_code() != null) {
+            existingCompra.setCodigo_descuento(purchaseDto.discount_code());
+        }
+
+        // Actualizar usuario si viene user_id válido
+        if (purchaseDto.user_id() != null && !purchaseDto.user_id().isEmpty()) {
+            Integer userId = Integer.parseInt(purchaseDto.user_id());
+            Usuario usuario = usuarioRepository.findById(userId)
+                    .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado: " + userId));
+            existingCompra.setUsuario(usuario);
+        }
+
+        // Actualizar curso (considerando que Compra tiene lista cursos)
+        if (purchaseDto.course_id() != null && !purchaseDto.course_id().isEmpty()) {
+            Integer courseId = Integer.parseInt(purchaseDto.course_id());
+            Curso curso = cursoRepository.findById(courseId)
+                    .orElseThrow(() -> new EntityNotFoundException("Curso no encontrado: " + courseId));
+
+            // Suponiendo que sólo quieres mantener 1 curso en la compra (o reemplazar lista)
+            existingCompra.setCursos(List.of(curso));
+        }
+
+        System.out.println("Actualizando compra: " + purchaseDto);
         return compraRepository.save(existingCompra);
     }
 
