@@ -62,11 +62,7 @@ jobs:
 
           -Dsonar.projectName='AMB_DASHBOARD' \
 
-          -Dsonar.host.url=$SONAR_HOST_URL \
-
-          -Dsonar.login=$SONAR_TOKEN \
-
-          -Dsonar.projectCreation.mainBranchName=develop
+          -Dsonar.host.url=$SONAR_HOST_URL
 
   deploy:
     name: Deploy
