@@ -21,6 +21,7 @@ public class Usuario {
     private Integer usuario_id;
 
 
+
     private String correo;
     private String contrasena;
     private String nombre;
@@ -38,9 +39,10 @@ public class Usuario {
     private String discord;
     private String ident_fiscal;
     private Boolean verificado;
+    private String baremo;
     private String fecha_examen;
     private Integer aciertos_examen;
-    private float nota_examen;
+    private Float nota_examen;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Token> tokens = new ArrayList<>();

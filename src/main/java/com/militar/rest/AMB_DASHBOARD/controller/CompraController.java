@@ -1,7 +1,6 @@
 package com.militar.rest.AMB_DASHBOARD.controller;
 
 
-import com.militar.rest.AMB_DASHBOARD.dto.course.GetCourseDto;
 import com.militar.rest.AMB_DASHBOARD.dto.purchase.GetPurchaseDto;
 import com.militar.rest.AMB_DASHBOARD.dto.purchase.GetPurchaseList;
 import com.militar.rest.AMB_DASHBOARD.model.Compra;
@@ -28,7 +27,7 @@ public class CompraController {
     )
     @GetMapping("/{id}")
     public ResponseEntity<GetPurchaseDto> getCourseById(@PathVariable  Integer id) {
-        return ResponseEntity.status(HttpStatus.OK).body(compraService.getUserById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(compraService.getPurchaseById(id));
     }
 
     @Operation(
@@ -56,5 +55,11 @@ public class CompraController {
     public ResponseEntity<?> updatePurchase(@PathVariable Integer id, @RequestBody GetPurchaseDto purchase) {
         return ResponseEntity.status(HttpStatus.OK).body(compraService.updatePurchase(id, purchase));
     }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<GetPurchaseDto> getPurchaseByUserId(@PathVariable Integer userId) {
+        return ResponseEntity.status(HttpStatus.OK).body(compraService.getPurchaseByUserId(userId));
+    }
+
 
 }

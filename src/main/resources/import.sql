@@ -31,10 +31,10 @@ INSERT INTO usuario (usuario_id, correo, contrasena, nombre, apellidos, nombre_c
 INSERT INTO usuario (usuario_id, correo, contrasena, nombre, apellidos, nombre_completo, ano_nacimiento, prefijo, telefono, direccion, apodo, foto, genero, fecha_creacion, ultimo_acceso, discord, ident_fiscal, verificado, fecha_examen, aciertos_examen, nota_examen) VALUES (9, 'jorge@mail.com', 'pass9', 'Jorge', 'Navarro', 'Jorge Navarro', '1987', '+34', 600999999, 'Calle 9', 'jn', 'foto9.jpg', 'M', '2023-01-09', '2023-06-09', 'jorge#7777', 'R0987654I', false, '2023-05-09', 7, 6.0);
 INSERT INTO usuario (usuario_id, correo, contrasena, nombre, apellidos, nombre_completo, ano_nacimiento, prefijo, telefono, direccion, apodo, foto, genero, fecha_creacion, ultimo_acceso, discord, ident_fiscal, verificado, fecha_examen, aciertos_examen, nota_examen) VALUES (10, 'eva@mail.com', 'pass10', 'Eva', 'Torres', 'Eva Torres', '1996', '+34', 601000000, 'Calle 10', 'et', 'foto10.jpg', 'F', '2023-01-10', '2023-06-10', 'eva#8888', 'Q9876543J', true, '2023-05-10', 10, 9.5);
 
-INSERT INTO compra ( precio_compra, fecha_compra, usuario_id) VALUES ( '49.99', '2024-06-01', 1);
-INSERT INTO compra ( precio_compra, fecha_compra, usuario_id) VALUES ( '55.00', '2024-06-11', 6);
-INSERT INTO compra ( precio_compra, fecha_compra, usuario_id) VALUES ( '70.50', '2024-06-12', 7);
-INSERT INTO compra ( precio_compra, fecha_compra, usuario_id) VALUES ('33.25', '2024-06-13', 8);
+INSERT INTO compra (precio_compra, fecha_compra, usuario_id, codigo_descuento, fecha_inicio, fecha_fin, merchant_order)VALUES ('49.99', '2024-06-01', 1, 'DESC10', '2024-06-01 10:00:00', '2024-07-01 10:00:00', 'ORDER123');
+INSERT INTO compra (precio_compra, fecha_compra, usuario_id, codigo_descuento, fecha_inicio, fecha_fin, merchant_order)VALUES ('55.00', '2024-06-11', 6, 'DESC20', '2024-06-11 09:00:00', '2024-07-11 09:00:00', 'ORDER456');
+INSERT INTO compra (precio_compra, fecha_compra, usuario_id, codigo_descuento, fecha_inicio, fecha_fin, merchant_order)VALUES ('70.50', '2024-06-12', 7, 'DESC30', '2024-06-12 08:00:00', '2024-07-12 08:00:00', 'ORDER789');
+INSERT INTO compra (precio_compra, fecha_compra, usuario_id, codigo_descuento, fecha_inicio, fecha_fin, merchant_order)VALUES ('33.25', '2024-06-13', 8, 'DESC40', '2024-06-13 07:00:00', '2024-07-13 07:00:00', 'ORDER321');
 
 INSERT INTO compra_curso (compra_id, curso_id) VALUES (1, 1);
 INSERT INTO compra_curso (compra_id, curso_id) VALUES (2, 2);
