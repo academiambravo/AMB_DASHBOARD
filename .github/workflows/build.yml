@@ -66,6 +66,9 @@ jobs:
 
           -Dsonar.login=$SONAR_TOKEN
 
+          -Dsonar.branch.name=${{ github.ref_name }}
+
+
   deploy:
     name: Deploy
 
