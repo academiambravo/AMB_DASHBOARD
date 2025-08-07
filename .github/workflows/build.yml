@@ -64,7 +64,9 @@ jobs:
 
           -Dsonar.host.url=$SONAR_HOST_URL \
 
-          -Dsonar.login=$SONAR_TOKEN
+          -Dsonar.login=$SONAR_TOKEN \
+
+          -Dsonar.projectCreation.mainBranchName=develop
 
   deploy:
     name: Deploy
