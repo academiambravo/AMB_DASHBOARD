@@ -66,6 +66,8 @@ jobs:
 
           -Dsonar.login=$SONAR_TOKEN \
 
+          -Dsonar.projectCreation.mainBranchName=develop
+
   deploy:
     name: Deploy
 
@@ -73,7 +75,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    if: ${{ needs.build.result == 'success' }} # Solo si 'build' fue OK
+    if: ${{ needs.build.result == 'success' }} # Solo si 'build' fue OK 
 
     steps:
       - name: Echo deploy (ficticio, pon aquí tu deploy real)
