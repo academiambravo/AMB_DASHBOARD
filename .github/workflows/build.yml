@@ -58,7 +58,7 @@ jobs:
 
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
 
-          -Dsonar.projectKey=academiambravo_AMB_DASHBOARD_46d4e516-5ee0-4456-9119-92077033bb44 \
+          -Dsonar.projectKey=academiambravo_AMB_DASHBOARD_9942f7be-6e49-47aa-8f75-f8cff0685d2b \
 
           -Dsonar.projectName='AMB_DASHBOARD' \
 
