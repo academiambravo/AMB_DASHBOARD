@@ -3,7 +3,6 @@ name: Build & Deploy
 on:
   push:
     branches:
-      - main
       - develop
 
 jobs:
@@ -66,8 +65,7 @@ jobs:
 
           -Dsonar.login=$SONAR_TOKEN \
 
-          -Dsonar.branch.name=${{ github.ref_name }}
-
+          -Dsonar.branch.name=develop
 
   deploy:
     name: Deploy
