@@ -9,71 +9,49 @@ on:
 jobs:
   build:
     name: Build and analyze
-
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-
         with:
           fetch-depth: 0
 
       - name: Set up JDK 21
-
         uses: actions/setup-java@v4
-
         with:
           java-version: 21
-
           distribution: "zulu"
 
       - name: Cache SonarQube packages
-
         uses: actions/cache@v4
-
         with:
           path: ~/.sonar/cache
-
           key: ${{ runner.os }}-sonar
-
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Cache Maven packages
-
         uses: actions/cache@v4
-
         with:
           path: ~/.m2
-
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-
           restore-keys: ${{ runner.os }}-m2
 
       - name: Build and analyze
-
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-
-          -Dsonar.projectKey=academiambravo_AMB_DASHBOARD_9942f7be-6e49-47aa-8f75-f8cff0685d2b \
-
-          -Dsonar.projectName='AMB_DASHBOARD' \
-
-          -Dsonar.host.url=$SONAR_HOST_URL
+        run: |
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+            -Dsonar.projectKey=academiambravo_AMB_DASHBOARD_9942f7be-6e49-47aa-8f75-f8cff0685d2b \
+            -Dsonar.projectName='AMB_DASHBOARD' \
+            -Dsonar.host.url=$SONAR_HOST_URL \
+            -Dsonar.projectCreation.mainBranchName=develop
 
   deploy:
     name: Deploy
-
-    needs: build # Esto dice que 'deploy' depende de 'build'
-
+    needs: build
     runs-on: ubuntu-latest
-
-    if: ${{ needs.build.result == 'success' }} # Solo si 'build' fue OK 
-
+    if: ${{ needs.build.result == 'success' }}
     steps:
       - name: Echo deploy (ficticio, pon aquí tu deploy real)
-
         run: echo "¡Desplegando porque Quality Gate ha pasado!"
