@@ -66,8 +66,6 @@ jobs:
 
           -Dsonar.login=$SONAR_TOKEN \
 
-          -Dsonar.branch.name=develop
-
   deploy:
     name: Deploy
 
