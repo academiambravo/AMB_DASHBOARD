@@ -54,4 +54,4 @@ jobs:
     if: ${{ needs.build.result == 'success' }}
     steps:
       - name: Echo deploy (ficticio, pon aquí tu deploy real)
-        run: echo "¡Desplegando porque Quality Gate ha pasado!"
+        run: echo "¡Desplegando porque Quality Gate ha pasado!!"
