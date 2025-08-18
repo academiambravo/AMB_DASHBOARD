@@ -3,7 +3,9 @@ package com.militar.rest.AMB_DASHBOARD.controller;
 
 import com.militar.rest.AMB_DASHBOARD.dto.subcategory.CreateSubcategoryDto;
 import com.militar.rest.AMB_DASHBOARD.dto.subcategory.GetSubCategoryDto;
+import com.militar.rest.AMB_DASHBOARD.dto.subcategory.GetSubcategoryListDto;
 import com.militar.rest.AMB_DASHBOARD.dto.subcategory.UpdateSubcategoryDto;
+import com.militar.rest.AMB_DASHBOARD.model.Subcategoria;
 import com.militar.rest.AMB_DASHBOARD.service.SubcategoriaService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +27,7 @@ public class SubcategoriaController {
             tags = {"Subcategory"}
     )
     @GetMapping("/list")
-    public ResponseEntity<?> getSubcategoryList() {
+    public ResponseEntity<GetSubcategoryListDto> getSubcategoryList() {
         return ResponseEntity.ok(subcategoriaService.getSubcategoryList());
     }
 
@@ -55,7 +57,7 @@ public class SubcategoriaController {
             tags = {"Subcategory"}
     )
     @PostMapping()
-    public ResponseEntity<?> createSubcategory(@RequestBody CreateSubcategoryDto newSubcategory) {
+    public ResponseEntity<Subcategoria> createSubcategory(@RequestBody CreateSubcategoryDto newSubcategory) {
         return ResponseEntity.ok(subcategoriaService.create(newSubcategory));
     }
 
@@ -65,7 +67,7 @@ public class SubcategoriaController {
             tags = {"Subcategory"}
     )
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updateSubcategory(@PathVariable Integer id, @RequestBody UpdateSubcategoryDto subcategory) {
+    public ResponseEntity<Subcategoria> updateSubcategory(@PathVariable Integer id, @RequestBody UpdateSubcategoryDto subcategory) {
         return ResponseEntity.ok(subcategoriaService.update(id,subcategory));
     }
 
@@ -75,7 +77,7 @@ public class SubcategoriaController {
             tags = {"Subcategory"}
     )
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteSubcategory(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteSubcategory(@PathVariable Integer id) {
         subcategoriaService.delete(id);
         return ResponseEntity.noContent().build();
     }

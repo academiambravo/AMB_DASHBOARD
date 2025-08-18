@@ -47,12 +47,12 @@ public class CompraController {
             tags = {"Purchase"}
     )
     @PostMapping()
-    public ResponseEntity<?> createPurchase(@RequestBody Compra purchase) {
+    public ResponseEntity<Compra> createPurchase(@RequestBody Compra purchase) {
         return ResponseEntity.status(HttpStatus.CREATED).body(compraService.createPurchase(purchase));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updatePurchase(@PathVariable Integer id, @RequestBody GetPurchaseDto purchase) {
+    public ResponseEntity<Compra> updatePurchase(@PathVariable Integer id, @RequestBody GetPurchaseDto purchase) {
         return ResponseEntity.status(HttpStatus.OK).body(compraService.updatePurchase(id, purchase));
     }
 
