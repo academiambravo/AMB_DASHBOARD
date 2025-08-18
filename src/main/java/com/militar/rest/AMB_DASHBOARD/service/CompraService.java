@@ -23,6 +23,7 @@ public class CompraService {
     private final CompraRepository compraRepository;
     private final CursoRepository cursoRepository;
     private final UsuarioRepository usuarioRepository;
+    private final UsuarioService usuarioService;
 
     public GetPurchaseDto getPurchaseById(Integer userId) {
         return compraRepository.findById(userId)
@@ -32,9 +33,7 @@ public class CompraService {
 
     public GetPurchaseDto getPurchaseByUserId(Integer userId) {
 
-        Usuario usuario = usuarioRepository.findById(userId)
-                .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado: " + userId));
-
+        Usuario usuario = usuarioRepository.findById(userId).get();
         List<Compra> compras = compraRepository.findAllByUsuario(usuario);
 
         if (compras.isEmpty()) {
@@ -60,8 +59,7 @@ public class CompraService {
                 .toList();
         newCompra.setCursos(cursos);
 
-        Usuario usuario = usuarioRepository.findById(newCompra.getUsuario().getUsuario_id())
-                .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado: " + newCompra.getUsuario().getUsuario_id()));
+        Usuario usuario = usuarioRepository.findById(newCompra.getUsuario().getUsuario_id()).get();
         newCompra.setUsuario(usuario);
 
         return compraRepository.save(newCompra);
@@ -94,8 +92,7 @@ public class CompraService {
         // Actualizar usuario si viene user_id válido
         if (purchaseDto.user_id() != null && !purchaseDto.user_id().isEmpty()) {
             Integer userId = Integer.parseInt(purchaseDto.user_id());
-            Usuario usuario = usuarioRepository.findById(userId)
-                    .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado: " + userId));
+            Usuario usuario = usuarioRepository.findById(userId).get();
             existingCompra.setUsuario(usuario);
         }
 
