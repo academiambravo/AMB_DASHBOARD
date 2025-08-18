@@ -2,6 +2,7 @@ package com.militar.rest.AMB_DASHBOARD.controller;
 
 import com.militar.rest.AMB_DASHBOARD.dto.category.CreateCategoryDto;
 import com.militar.rest.AMB_DASHBOARD.dto.category.GetCategoriaDto;
+import com.militar.rest.AMB_DASHBOARD.dto.category.GetCategoryListDto;
 import com.militar.rest.AMB_DASHBOARD.dto.category.UpdateCategoryDto;
 import com.militar.rest.AMB_DASHBOARD.model.Categoria;
 import com.militar.rest.AMB_DASHBOARD.service.CategoriaService;
@@ -25,7 +26,7 @@ public class CategoriaController {
         tags = {"Category"}
     )
     @GetMapping("/list")
-    public ResponseEntity<?> getCategoryList() {
+    public ResponseEntity<GetCategoryListDto> getCategoryList() {
         return ResponseEntity.ok(categoriaService.getCategoryList());
     }
 
@@ -59,7 +60,7 @@ public class CategoriaController {
         tags = {"Category"}
     )
     @PostMapping()
-    public ResponseEntity<?> createNewCategory(@RequestBody CreateCategoryDto category) {
+    public ResponseEntity<Categoria> createNewCategory(@RequestBody CreateCategoryDto category) {
         return ResponseEntity.ok(categoriaService.createNewCategory(category));
     }
 
@@ -84,7 +85,7 @@ public class CategoriaController {
         tags = {"Category"}
     )
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCategory(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteCategory(@PathVariable Integer id) {
         categoriaService.deleteCategory(id);
         return ResponseEntity.noContent().build();
     }

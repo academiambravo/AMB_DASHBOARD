@@ -40,3 +40,21 @@ INSERT INTO compra_curso (compra_id, curso_id) VALUES (1, 1);
 INSERT INTO compra_curso (compra_id, curso_id) VALUES (2, 2);
 INSERT INTO compra_curso (compra_id, curso_id) VALUES (3, 1);
 INSERT INTO compra_curso (compra_id, curso_id) VALUES (4, 2);
+
+
+INSERT INTO afiliado (usuario, contrasena, codigo, desc_afil_arcade, desc_alum_arcade, desc_afil_campana, desc_alum_campana, fecha_fin, usos, fecha_creacion) VALUES ( 'afiliado1', 'pass1', 'COD001', '10%', '5%', '15%', '7%', '2025-12-31 23:59:59', 10, '2024-06-01');
+INSERT INTO afiliado (usuario, contrasena, codigo, desc_afil_arcade, desc_alum_arcade, desc_afil_campana, desc_alum_campana, fecha_fin, usos, fecha_creacion) VALUES ('afiliado2', 'pass2', 'COD002', '12%', '6%', '18%', '8%', '2025-11-30 23:59:59', 8, '2024-06-02');
+INSERT INTO afiliado (usuario, contrasena, codigo, desc_afil_arcade, desc_alum_arcade, desc_afil_campana, desc_alum_campana, fecha_fin, usos, fecha_creacion) VALUES ('afiliado3', 'pass3', 'COD003', '8%', '4%', '10%', '5%', '2025-10-31 23:59:59', 12, '2024-06-03');
+INSERT INTO afiliado (usuario, contrasena, codigo, desc_afil_arcade, desc_alum_arcade, desc_afil_campana, desc_alum_campana, fecha_fin, usos, fecha_creacion) VALUES ( 'afiliado4', 'pass4', 'COD004', '20%', '10%', '25%', '12%', '2025-09-30 23:59:59', 5, '2024-06-04');
+INSERT INTO afiliado (usuario, contrasena, codigo, desc_afil_arcade, desc_alum_arcade, desc_afil_campana, desc_alum_campana, fecha_fin, usos, fecha_creacion) VALUES ( 'afiliado5', 'pass5', 'COD005', '15%', '7%', '22%', '9%', '2025-08-31 23:59:59', 7, '2024-06-05');
+
+
+INSERT INTO pregunta (identificador, orden, enunciado, pregunta, rcorrecta, rfalsa1, rfalsa2, rfalsa3, foto, foto_pregunta, descripcion_respuesta, foto_respuesta, usuario_creacion, fecha_creacion, usuario_modificacion, fecha_modificacion, id_subcategoria)VALUES ('P1', 1, 'Enunciado 1', '¿Pregunta 1?', 'Respuesta correcta 1', 'Falsa 1', 'Falsa 2', 'Falsa 3', NULL, NULL, 'Descripción 1', NULL, 'admin', '2024-06-01', NULL, NULL, 1);
+
+INSERT INTO pregunta (identificador, orden, enunciado, pregunta, rcorrecta, rfalsa1, rfalsa2, rfalsa3, foto, foto_pregunta, descripcion_respuesta, foto_respuesta, usuario_creacion, fecha_creacion, usuario_modificacion, fecha_modificacion, id_subcategoria)VALUES ('P2', 2, 'Enunciado 2', '¿Pregunta 2?', 'Respuesta correcta 2', 'Falsa 1', 'Falsa 2', 'Falsa 3', NULL, NULL, 'Descripción 2', NULL, 'admin', '2024-06-02', NULL, NULL, 1);
+
+INSERT INTO pregunta (identificador, orden, enunciado, pregunta, rcorrecta, rfalsa1, rfalsa2, rfalsa3, foto, foto_pregunta, descripcion_respuesta, foto_respuesta, usuario_creacion, fecha_creacion, usuario_modificacion, fecha_modificacion, id_subcategoria)VALUES ('P3', 3, 'Enunciado 3', '¿Pregunta 3?', 'Respuesta correcta 3', 'Falsa 1', 'Falsa 2', 'Falsa 3', NULL, NULL, 'Descripción 3', NULL, 'admin', '2024-06-03', NULL, NULL, 2);
+
+INSERT INTO pregunta (identificador, orden, enunciado, pregunta, rcorrecta, rfalsa1, rfalsa2, rfalsa3, foto, foto_pregunta, descripcion_respuesta, foto_respuesta, usuario_creacion, fecha_creacion, usuario_modificacion, fecha_modificacion, id_subcategoria)VALUES ('P4', 4, 'Enunciado 4', '¿Pregunta 4?', 'Respuesta correcta 4', 'Falsa 1', 'Falsa 2', 'Falsa 3', NULL, NULL, 'Descripción 4', NULL, 'admin', '2024-06-04', NULL, NULL, 2);
+
+INSERT INTO pregunta (identificador, orden, enunciado, pregunta, rcorrecta, rfalsa1, rfalsa2, rfalsa3, foto, foto_pregunta, descripcion_respuesta, foto_respuesta, usuario_creacion, fecha_creacion, usuario_modificacion, fecha_modificacion, id_subcategoria)VALUES ('P5', 5, 'Enunciado 5', '¿Pregunta 5?', 'Respuesta correcta 5', 'Falsa 1', 'Falsa 2', 'Falsa 3', NULL, NULL, 'Descripción 5', NULL, 'admin', '2024-06-05', NULL, NULL, 3);

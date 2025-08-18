@@ -14,6 +14,7 @@ public record GetCategoriaDto(
         String user_modification,
         String modification_date
 
+
 ) {
 
     public static GetCategoriaDto from (Categoria categoria) {

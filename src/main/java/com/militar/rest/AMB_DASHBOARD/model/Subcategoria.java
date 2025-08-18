@@ -13,7 +13,8 @@ public class Subcategoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_subcategoria;
+    @Column(name = "id_subcategoria")
+    private Integer idSubcategoria;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")

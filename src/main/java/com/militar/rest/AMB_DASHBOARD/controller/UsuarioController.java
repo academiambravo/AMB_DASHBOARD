@@ -3,6 +3,7 @@ package com.militar.rest.AMB_DASHBOARD.controller;
 import com.militar.rest.AMB_DASHBOARD.dto.user.GetUserDto;
 import com.militar.rest.AMB_DASHBOARD.dto.user.GetUserList;
 import com.militar.rest.AMB_DASHBOARD.dto.user.GetUserNameSo;
+import com.militar.rest.AMB_DASHBOARD.model.Usuario;
 import com.militar.rest.AMB_DASHBOARD.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.Getter;
@@ -55,5 +56,10 @@ public class UsuarioController {
     @GetMapping("/so-user")
     public ResponseEntity<List<GetUserNameSo>> getUserByName() {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.getUserByName());
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Usuario> updateUsuario(@RequestBody GetUserDto newUser, @PathVariable Integer id) {
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.updateUsuario(newUser, id));
     }
 }

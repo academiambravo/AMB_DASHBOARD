@@ -20,7 +20,7 @@ public record GetSubCategoryDto(
 
     public static GetSubCategoryDto from (Subcategoria subcategoria) {
         return GetSubCategoryDto.builder()
-                .subcategory_id(subcategoria.getId_subcategoria().toString())
+                .subcategory_id(subcategoria.getIdSubcategoria().toString())
                 .category_id(subcategoria.getCategoria().getCategoria_id().toString())
                 .subcategory_name(subcategoria.getNombre())
                 .active(subcategoria.isHabilitada())
