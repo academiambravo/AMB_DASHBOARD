@@ -27,40 +27,51 @@ class UsuarioServiceTest {
 
     @Test
     void getUserById_success() {
-        Usuario usuario = mock(Usuario.class);
-        when(usuarioRepository.findById(1)).thenReturn(Optional.of(usuario));
-        GetUserDto dto = mock(GetUserDto.class);
-        mockStatic(GetUserDto.class).when(() -> GetUserDto.from(usuario)).thenReturn(dto);
+        Usuario usuario = new Usuario();
+        usuario.setUsuario_id(1);
+        usuario.setNombre("Carlitos");
 
-        assertEquals(dto, usuarioService.getUserById(1));
+        when(usuarioRepository.findById(1)).thenReturn(Optional.of(usuario));
+
+        GetUserDto dto = usuarioService.getUserById(1);
+
+        assertNotNull(dto);
+        assertEquals("Carlitos", dto.nombre());
     }
 
     @Test
     void getUserById_notFound() {
         when(usuarioRepository.findById(1)).thenReturn(Optional.empty());
+
         assertThrows(EntityNotFoundException.class, () -> usuarioService.getUserById(1));
     }
 
     @Test
     void getUserList_success() {
-        Usuario usuario = mock(Usuario.class);
+        Usuario usuario = new Usuario();
+        usuario.setUsuario_id(1);
+        usuario.setNombre("Carlitos");
+
         List<Usuario> usuarios = List.of(usuario);
         when(usuarioRepository.findAll()).thenReturn(usuarios);
-        GetUserList listDto = mock(GetUserList.class);
-        mockStatic(GetUserList.class).when(() -> GetUserList.from(usuarios)).thenReturn(listDto);
 
-        assertEquals(listDto, usuarioService.getUserList());
+        GetUserList listDto = usuarioService.getUserList();
+
+        assertNotNull(listDto);
+
     }
 
     @Test
     void getUserList_empty() {
         when(usuarioRepository.findAll()).thenReturn(List.of());
+
         assertThrows(EntityNotFoundException.class, () -> usuarioService.getUserList());
     }
 
     @Test
     void deleteUserById_success() {
         doNothing().when(usuarioRepository).deleteById(1);
+
         assertDoesNotThrow(() -> usuarioService.deleteUserById(1));
         verify(usuarioRepository, times(1)).deleteById(1);
     }

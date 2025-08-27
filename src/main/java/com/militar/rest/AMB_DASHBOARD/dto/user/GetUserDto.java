@@ -41,8 +41,7 @@ public record GetUserDto(
                 .nombre_completo(user.getNombre_completo())
                 .ano_nacimiento(user.getAno_nacimiento())
                 .prefijo(user.getPrefijo())
-                .telefono(user.getTelefono().toString())
-                .direccion(user.getDireccion())
+                .telefono(user.getTelefono() != null ? user.getTelefono().toString() : null)                .direccion(user.getDireccion())
                 .apodo(user.getApodo())
                 .foto(user.getFoto())
                 .genero(user.getGenero())
@@ -52,8 +51,8 @@ public record GetUserDto(
                 .ident_fiscal(user.getIdent_fiscal())
                 .verificado(user.getVerificado())
                 .fecha_examen(user.getFecha_examen())
-                .aciertos_examen(user.getAciertos_examen().toString())
-                .nota_examen(user.getNota_examen().toString())
+                .aciertos_examen(user.getAciertos_examen() != null ? user.getAciertos_examen().toString() : null)
+                .nota_examen(user.getNota_examen() != null ? user.getNota_examen().toString() : null)
                 .baremo(user.getBaremo())
                 .build();
     }
