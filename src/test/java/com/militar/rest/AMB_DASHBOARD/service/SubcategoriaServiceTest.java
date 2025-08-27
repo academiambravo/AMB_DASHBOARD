@@ -4,12 +4,12 @@ import com.militar.rest.AMB_DASHBOARD.dto.subcategory.CreateSubcategoryDto;
 import com.militar.rest.AMB_DASHBOARD.dto.subcategory.GetSubCategoryDto;
 import com.militar.rest.AMB_DASHBOARD.dto.subcategory.GetSubcategoryListDto;
 import com.militar.rest.AMB_DASHBOARD.dto.subcategory.UpdateSubcategoryDto;
+import com.militar.rest.AMB_DASHBOARD.model.Categoria;
 import com.militar.rest.AMB_DASHBOARD.model.Subcategoria;
 import com.militar.rest.AMB_DASHBOARD.repository.SubcategoriaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,13 +30,22 @@ class SubcategoriaServiceTest {
 
     @Test
     void getSubcategoryList_success() {
-        List<Subcategoria> subcategorias = List.of(mock(Subcategoria.class));
-        when(subcategoriaRepository.findAll()).thenReturn(subcategorias);
-        GetSubcategoryListDto listDto = mock(GetSubcategoryListDto.class);
-        try (MockedStatic<GetSubcategoryListDto> mocked = mockStatic(GetSubcategoryListDto.class)) {
-            mocked.when(() -> GetSubcategoryListDto.getSubcategories(subcategorias)).thenReturn(listDto);
-            assertEquals(listDto, subcategoriaService.getSubcategoryList());
-        }
+        Categoria categoria = new Categoria();
+        categoria.setCategoria_id(1);
+        categoria.setNombre("Cat1");
+
+        Subcategoria sub = new Subcategoria();
+        sub.setIdSubcategoria(1);
+        sub.setNombre("Sub1");
+        sub.setCategoria(categoria); // Asigna la categoría
+
+        List<Subcategoria> subs = List.of(sub);
+
+        when(subcategoriaRepository.findAll()).thenReturn(subs);
+
+        GetSubcategoryListDto listDto = subcategoriaService.getSubcategoryList();
+
+        assertNotNull(listDto);
     }
 
     @Test
@@ -47,13 +56,21 @@ class SubcategoriaServiceTest {
 
     @Test
     void findById_success() {
-        Subcategoria subcategoria = mock(Subcategoria.class);
-        when(subcategoriaRepository.findById(1)).thenReturn(Optional.of(subcategoria));
-        GetSubCategoryDto dto = mock(GetSubCategoryDto.class);
-        try (MockedStatic<GetSubCategoryDto> mocked = mockStatic(GetSubCategoryDto.class)) {
-            mocked.when(() -> GetSubCategoryDto.from(subcategoria)).thenReturn(dto);
-            assertEquals(dto, subcategoriaService.findById(1));
-        }
+        Categoria categoria = new Categoria();
+        categoria.setCategoria_id(1);
+        categoria.setNombre("Cat1");
+
+        Subcategoria sub = new Subcategoria();
+        sub.setIdSubcategoria(1);
+        sub.setNombre("Sub1");
+        sub.setCategoria(categoria); // Asigna la categoría
+
+        when(subcategoriaRepository.findById(1)).thenReturn(Optional.of(sub));
+
+        GetSubCategoryDto dto = subcategoriaService.findById(1);
+
+        assertNotNull(dto);
+        assertEquals("Sub1", dto.subcategory_name());
     }
 
     @Test
@@ -64,47 +81,88 @@ class SubcategoriaServiceTest {
 
     @Test
     void findByName_success() {
-        Subcategoria subcategoria = mock(Subcategoria.class);
-        when(subcategoriaRepository.findByNombre("test")).thenReturn(Optional.of(subcategoria));
-        GetSubCategoryDto dto = mock(GetSubCategoryDto.class);
-        try (MockedStatic<GetSubCategoryDto> mocked = mockStatic(GetSubCategoryDto.class)) {
-            mocked.when(() -> GetSubCategoryDto.from(subcategoria)).thenReturn(dto);
-            assertEquals(dto, subcategoriaService.findByName("test"));
-        }
-    }
+        // Crear la categoría
+        Categoria categoria = new Categoria();
+        categoria.setCategoria_id(1);
+        categoria.setNombre("Cat1");
+
+        // Crear la subcategoría y asignarle la categoría
+        Subcategoria sub = new Subcategoria();
+        sub.setIdSubcategoria(1);
+        sub.setNombre("Sub1");
+        sub.setCategoria(categoria);  // <- IMPORTANTE
+        sub.setHabilitada(true);
+
+        when(subcategoriaRepository.findByNombre("Sub1")).thenReturn(Optional.of(sub));
+
+        GetSubCategoryDto dto = subcategoriaService.findByName("Sub1");
+
+        assertNotNull(dto);
+        assertEquals("Sub1", dto.subcategory_name());
+        assertEquals("1", dto.category_id());    }
+
 
     @Test
     void findByName_notFound() {
-        when(subcategoriaRepository.findByNombre("test")).thenReturn(Optional.empty());
-        assertThrows(EntityNotFoundException.class, () -> subcategoriaService.findByName("test"));
+        when(subcategoriaRepository.findByNombre("Sub1")).thenReturn(Optional.empty());
+        assertThrows(EntityNotFoundException.class, () -> subcategoriaService.findByName("Sub1"));
     }
 
     @Test
     void create_success() {
-        CreateSubcategoryDto dto = mock(CreateSubcategoryDto.class);
-        when(dto.name()).thenReturn("nombre");
-        when(dto.active()).thenReturn(true);
-        Subcategoria subcategoria = mock(Subcategoria.class);
-        when(subcategoriaRepository.save(any(Subcategoria.class))).thenReturn(subcategoria);
+        Categoria categoria = new Categoria();
+        categoria.setCategoria_id(1);
+        categoria.setNombre("Cat1");
 
-        assertEquals(subcategoria, subcategoriaService.create(dto));
+        Subcategoria sub = new Subcategoria();
+        sub.setNombre("Nueva");
+        sub.setHabilitada(true);
+        sub.setCategoria(categoria); // Asigna la categoría
+
+        CreateSubcategoryDto dto = CreateSubcategoryDto.from(sub);
+
+        when(subcategoriaRepository.save(any(Subcategoria.class))).thenReturn(sub);
+
+        Subcategoria created = subcategoriaService.create(dto);
+
+        assertNotNull(created);
+        assertEquals("Nueva", created.getNombre());
         verify(subcategoriaRepository).save(any(Subcategoria.class));
     }
 
+
     @Test
     void update_success() {
-        UpdateSubcategoryDto dto = mock(UpdateSubcategoryDto.class);
-        Subcategoria subcategoria = mock(Subcategoria.class);
-        when(subcategoriaRepository.findById(1)).thenReturn(Optional.of(subcategoria));
-        when(subcategoriaRepository.save(subcategoria)).thenReturn(subcategoria);
+        Categoria categoria = new Categoria();
+        categoria.setCategoria_id(1);
+        categoria.setNombre("Cat1");
 
-        assertEquals(subcategoria, subcategoriaService.update(1, dto));
-        verify(subcategoriaRepository).save(subcategoria);
+        Subcategoria sub = new Subcategoria();
+        sub.setIdSubcategoria(1);
+        sub.setNombre("Original");
+        sub.setHabilitada(true);
+        sub.setUsuario_creacion("admin");
+        sub.setUsuario_modificacion("admin2");
+        sub.setFecha_creacion("2025-08-27");
+        sub.setFecha_modificacion("2025-08-27");
+        sub.setCategoria(categoria); // Asigna la categoría
+
+        UpdateSubcategoryDto dto = UpdateSubcategoryDto.from(sub);
+
+        when(subcategoriaRepository.findById(1)).thenReturn(Optional.of(sub));
+        when(subcategoriaRepository.save(sub)).thenReturn(sub);
+
+        Subcategoria updated = subcategoriaService.update(1, dto);
+
+        assertEquals("Original", updated.getNombre());
+        assertTrue(updated.isHabilitada());
+        verify(subcategoriaRepository).save(sub);
     }
+
 
     @Test
     void update_notFound() {
-        UpdateSubcategoryDto dto = mock(UpdateSubcategoryDto.class);
+        UpdateSubcategoryDto dto = new UpdateSubcategoryDto("Actualizada", "a", true,"c", "d", "e", "f");
         when(subcategoriaRepository.findById(1)).thenReturn(Optional.empty());
         assertThrows(EntityNotFoundException.class, () -> subcategoriaService.update(1, dto));
     }
@@ -113,6 +171,7 @@ class SubcategoriaServiceTest {
     void delete_success() {
         when(subcategoriaRepository.existsById(1)).thenReturn(true);
         doNothing().when(subcategoriaRepository).deleteById(1);
+
         assertDoesNotThrow(() -> subcategoriaService.delete(1));
         verify(subcategoriaRepository).deleteById(1);
     }
