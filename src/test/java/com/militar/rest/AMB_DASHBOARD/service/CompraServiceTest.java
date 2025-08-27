@@ -65,6 +65,7 @@ class CompraServiceTest {
             mocked.when(() -> GetPurchaseDto.from(compra)).thenReturn(dto);
             GetPurchaseDto result = compraService.getPurchaseByUserId(1);
             assertNotNull(result);
+
         }
     }
 
