@@ -41,10 +41,11 @@ class CompraServiceTest {
         Compra compra = new Compra();
         when(compraRepository.findById(1)).thenReturn(Optional.of(compra));
         GetPurchaseDto dto = mock(GetPurchaseDto.class);
-        mockStatic(GetPurchaseDto.class).when(() -> GetPurchaseDto.from(compra)).thenReturn(dto);
-
-        GetPurchaseDto result = compraService.getPurchaseById(1);
-        assertNotNull(result);
+        try (MockedStatic<GetPurchaseDto> mocked = mockStatic(GetPurchaseDto.class)) {
+            mocked.when(() -> GetPurchaseDto.from(compra)).thenReturn(dto);
+            GetPurchaseDto result = compraService.getPurchaseById(1);
+            assertNotNull(result);
+        }
     }
 
     @Test
